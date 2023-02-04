@@ -50,7 +50,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 
 |  Day | Activities | Done
 |---|---| ---|
-|Feb 2| Brainstorming / Writing Pseudocodes / Identifying All Contraints | Yes
+|Feb 2| Brainstorming / Writing Pseudocodes / Identifying All Constraints | Yes
 |Feb 3| Setting up framework and making good boilerplate/ Testing if each components are functioning with out error | Yes
 |Feb 4| Implementing Javascript API for desktop mouse and keyboard controls | Yes
 |Feb 5| Mapping Cells in the canvas for gold search functionalities  | Not Yet
