@@ -19,7 +19,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 
 ## Components
 
-- in figma links above the components are visible 
+- Look into the figma links above also:
   - head to contain title and links such as google font api, js file and css file
   - body to contain title, subtitle and canvas (i.e. actual game play area or in this particular game mining zone) 
   - footer to contain copyright information 
