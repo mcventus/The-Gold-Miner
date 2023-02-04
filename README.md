@@ -8,6 +8,8 @@ The Gold Miner: Project I
 
 A Gold Miner Game that enables the player to travel around the world and mine for gold.
 
+## Trello
+   https://trello.com/invite/b/jukR1qsi/ATTId01e433e81a4ff172ea6588ccc9b020bE5822A77/the-gold-miner
 
 ## Figma
 
