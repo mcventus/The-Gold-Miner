@@ -41,9 +41,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 - also player can use mouse to move the avatar in all directions
 - background music must play to make the game interesting
 
-## Priority Matrix
-
-   **wireframe**
+## Wireframe: Priority Matrix
    
    https://wireframe.cc/QVWKgN
 
