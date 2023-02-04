@@ -6,7 +6,7 @@ The Gold Miner: Project I
 
 **Project description:** 
 
-A Gold miner game that enables the player to travel around the world and collect huge amount of Gold.
+A Gold Miner Game that enables the player to travel around the world and mine for gold.
 
 
 ## figma
@@ -97,4 +97,4 @@ Smooth implementation of functionalities and calling them at runtime
 - No changes made yet, I will update this section later on 
 
 ## The report format
-- taken from the Teacher's repository. 
+- Taken from the Teacher's repository. 
