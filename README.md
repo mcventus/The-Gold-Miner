@@ -9,13 +9,13 @@ The Gold Miner: Project I
 A Gold Miner Game that enables the player to travel around the world and mine for gold.
 
 
-## figma
+## Figma
 
 - first page https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=0%3A1&t=4iSDfGYyXsiGTo2h-1
 - start page https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=1%3A16&t=4iSDfGYyXsiGTo2h-1
 - playing and scoring https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=1%3A53&t=4iSDfGYyXsiGTo2h-1
 
-## components
+## Components
 
 - in figma links above the components are visible 
   - head to contain title and links such as google font api, js file and css file
