@@ -1,0 +1,29 @@
+
+h2{
+    color: rgba(135, 217, 81, 0.584);
+    font-family: 1rem 'Unbounded', cursive;
+    font-style: normal;
+    font-size: 12px
+}
+.title{
+    color: rgba(255, 255, 255, 0.589);
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: xx-large;
+}
+body {
+    color: rgba(255, 255, 255, 0.529);
+    font-family: 'Roboto', sans-serif;
+    background: #000000 url(image/background.png) no-repeat; 
+    display: block; 
+    margin: 0 auto; 
+    padding: 0px;
+}
+canvas{ 
+    background: #0e0100; 
+    display: block; 
+    margin: 0 auto; 
+} 
+div {
+    text-align: center;
+}
