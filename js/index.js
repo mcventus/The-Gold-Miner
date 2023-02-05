@@ -6,7 +6,7 @@ let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
 let playerHeight = 110;
-let playerWidth = 92;
+let playerWidth = 60;
 let playerX = 0
 let playerY = 0
 let image = new Image();
@@ -15,12 +15,12 @@ image.src = "image/image77.png";
 //sets the canvas width and height
 const initilizeCanvas = () =>{
     //will be window's innerWidth
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    canvas.width = document.querySelector("#miningzone").width
+    canvas.height = document.querySelector("#miningzone").height
 
     // these centers player in the center of the canvas
-    playerX = (canvas.width - playerHeight)/2
-    playerY = (canvas.height - playerWidth)/2
+    playerX = (canvas.width - playerWidth)/2
+    playerY = (canvas.height - playerHeight)/2
 }
 
 initilizeCanvas()
@@ -97,6 +97,7 @@ window.addEventListener("resize", initilizeCanvas)
     // then canvas.width and canvas.height 
     // will draw in the miningZone
     context.fillRect(0, 0, canvas.width, canvas.height)
+    //context.clearRect(0, 0, canvas.width, canvas.height)
  }
 
  // draws the player or the gold miner
