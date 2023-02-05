@@ -14,7 +14,7 @@ h2{
 body {
     color: rgba(255, 255, 255, 0.529);
     font-family: 'Roboto', sans-serif;
-    background: #000000 url(image/background.png) no-repeat; 
+    background-image: url("../image/game-entry.png");
     display: block; 
     margin: 0 auto; 
     padding: 0px;
@@ -24,6 +24,7 @@ canvas{
     display: block; 
     margin: 0 auto; 
 } 
+
 div {
     text-align: center;
 }

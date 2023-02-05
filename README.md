@@ -6,18 +6,20 @@ The Gold Miner: Project I
 
 **Project description:** 
 
-A Gold miner game that enables the player to travel around the world and collect huge amount of Gold.
+A Gold Miner Game that enables the player to travel around the world and mine for gold.
 
+## Trello
+   https://trello.com/invite/b/jukR1qsi/ATTId01e433e81a4ff172ea6588ccc9b020bE5822A77/the-gold-miner
 
-## figma
+## Figma
 
 - first page https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=0%3A1&t=4iSDfGYyXsiGTo2h-1
 - start page https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=1%3A16&t=4iSDfGYyXsiGTo2h-1
 - playing and scoring https://www.figma.com/file/K6Y1sWooUYtZ1IJvPUFd1i/Game-Entry?node-id=1%3A53&t=4iSDfGYyXsiGTo2h-1
 
-## components
+## Components
 
-- in figma links above the components are visible 
+- Look into the figma links above also:
   - head to contain title and links such as google font api, js file and css file
   - body to contain title, subtitle and canvas (i.e. actual game play area or in this particular game mining zone) 
   - footer to contain copyright information 
@@ -41,9 +43,7 @@ A Gold miner game that enables the player to travel around the world and collect
 - also player can use mouse to move the avatar in all directions
 - background music must play to make the game interesting
 
-## Priority Matrix
-
-   **wireframe**
+## Wireframe: Priority Matrix
    
    https://wireframe.cc/QVWKgN
 
@@ -52,8 +52,8 @@ A Gold miner game that enables the player to travel around the world and collect
 
 |  Day | Activities | Done
 |---|---| ---|
-|Feb 2| Brainstorming / Writing Pseudocodes / Identifying All Contraints | Yes
-|Feb 3| Setting up framework and making good boilerplate/ Testing if each components are functioning with out error | Yes
+|Feb 2| Brainstorming / Writing Pseudocodes / Identifying All Constraints | Yes
+|Feb 3| Setting up framework and making good starting pages/ Testing if each components are functioning with out error | Yes
 |Feb 4| Implementing Javascript API for desktop mouse and keyboard controls | Yes
 |Feb 5| Mapping Cells in the canvas for gold search functionalities  | Not Yet
 |Feb 6| ... | ...
@@ -96,5 +96,5 @@ Smooth implementation of functionalities and calling them at runtime
 
 - No changes made yet, I will update this section later on 
 
-## The report format
-- taken from the Teacher's repository. 
+## Report Format Example
+- Taken from the Teacher's repository. 
