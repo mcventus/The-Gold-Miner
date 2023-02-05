@@ -14,7 +14,7 @@ h2{
 body {
     color: rgba(255, 255, 255, 0.529);
     font-family: 'Roboto', sans-serif;
-    background-image: url("../image/game-entry.png");
+    background-image: url("../image/background-img.png");
     display: block; 
     margin: 0 auto; 
     padding: 0px;
