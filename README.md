@@ -96,5 +96,5 @@ Smooth implementation of functionalities and calling them at runtime
 
 - No changes made yet, I will update this section later on 
 
-## Report Format Example
-- Taken from the Teacher's repository. 
+## The report format
+- taken from the Teacher's repository. 
