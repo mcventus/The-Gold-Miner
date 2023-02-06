@@ -1,22 +1,26 @@
 // GLOBAL VARIABLES
 let canvas = document.getElementById("miningZone");
 let context = canvas.getContext("2d");
+let canvasWidth = 0
+let canvasHeight = 0
+let speed = 2
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
-let playerHeight = 110;
+let playerHeight = 75;
 let playerWidth = 60;
 let playerX = 0
 let playerY = 0
+let isValidMove = false
 let image = new Image();
 image.src = "image/image77.png";
 
 //sets the canvas width and height
 const initilizeCanvas = () =>{
     //will be window's innerWidth
-    canvas.width = document.querySelector("#miningzone").width
-    canvas.height = document.querySelector("#miningzone").height
+    canvasWidth = canvas.width = document.querySelector("#miningZone").width
+    canvasHeight = canvas.height = document.querySelector("#miningZone").height
 
     // these centers player in the center of the canvas
     playerX = (canvas.width - playerWidth)/2
@@ -69,27 +73,43 @@ window.addEventListener("resize", initilizeCanvas)
 
  // mouse move handler
  function mouseMoveHandler(e) {
-     playerX = e.pageX - canvas.offsetLeft - playerWidth / 2;
-     playerY = e.pageY - canvas.offsetTop - playerHeight / 2;
+     playerX = (e.pageX - canvas.offsetLeft - playerWidth) / 2;
+     playerY = (e.pageY - canvas.offsetTop - playerHeight) / 2;
+    // playerX = (canvas.width - playerWidth)/2
+    // playerY = (canvas.height - playerHeight)/2
      
  }
+
+ class validateMove {
+    constructor(nextX, nextY, canvasWidth, canvasHeight) {
+        if (nextX + this.width <= canvasWidth && nextX >= 0 && nextY + this.height <= canvasHeight && nextY >= 0) {
+            this.playerX = nextX;
+            this.playerY = nextY;
+        }
+    }
+}
 
 //when key is pressed it controls
 //the direction and the speed of the avator 
  function keyBoardMoves(){
+    console.log(canvasWidth)
      // keyboard moves
      if(rightPressed) {
-         playerX += 2;
-     }
-     else if(leftPressed) {
-         playerX -= 2;
-     }
-     if(downPressed) {
-         playerY += 2;
-     }
-     else if(upPressed) {
-         playerY -= 2;
-     }
+        //playerX += 2;
+        validateMove(playerX + speed, playerY, canvasWidth, canvasHeight)
+    }
+    else if(leftPressed) {
+        //playerX -= 2;
+        validateMove(playerX - speed, playerY, canvasWidth, canvasHeight)
+    }
+    if(downPressed) {
+        //playerY += 2;
+        validateMove(playerX, playerY, canvasWidth + speed, canvasHeight)
+    }
+    else if(upPressed) {
+        //playerY -= 2;
+        validateMove(playerX, playerY, canvasWidth, canvasHeight - speed)
+    }
  }
 
  function clean(){
@@ -102,7 +122,7 @@ window.addEventListener("resize", initilizeCanvas)
 
  // draws the player or the gold miner
  function drawMiner(){
-     context.drawImage(image, playerX, playerY);
+     context.drawImage(image, playerX, playerY, playerWidth, playerHeight);
  }
 
  // draw function
