@@ -179,7 +179,6 @@ window.addEventListener("resize", initilizeCanvas)
 // event handlers
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler);
 
  // keyboard down handler
  function keyDownHandler(e) {
@@ -221,18 +220,7 @@ document.addEventListener("mousemove", mouseMoveHandler);
          upPressed = false;
      }
  }
-
- // mouse move handler
- function mouseMoveHandler(e) {
-    console.log(canvas.offsetLeft)
-    if(e.pageX + goldMiner.miner.minerWidth <= canvasWidth && e.pageX >= 0 
-        && e.pageY + goldMiner.miner.minerHeight <= canvasHeight && e.pageY >= 0){
-        // goldMiner.miner.minerX = (e.pageX - canvas.offsetLeft - goldMiner.miner.minerWidth) / 2;
-        // goldMiner.miner.minerY = (e.pageY - canvas.offsetTop - goldMiner.miner.minerHeight) / 2;
-    }
-    console.log("e pagex : " +e.pageX)
- }
-
+ 
  //score maker updates the score dom element
  function scoreMaker(){
     score += 15
