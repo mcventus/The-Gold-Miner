@@ -9,6 +9,7 @@ let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
+let gotGold = false;
 
 //CLASSES
 
@@ -24,7 +25,7 @@ class Miner{
 
         //creates instance of an image to draw in the canvas
         const img = new Image()
-        img.src = "image/image77.png"
+        img.src = "image/image_mario.png"
         this.chosenAvatar = img
     }
     // validates the move of the avatar 
@@ -39,6 +40,19 @@ class Miner{
     }
 }
 
+//Gold Nuggets Class
+class Nugget{
+    constructor(nuggetX, nuggetY, nuggetWidth, nuggetHeight){
+        this.nuggetX = nuggetX
+        this.nuggetY = nuggetY
+        this.nuggetWidth = nuggetWidth
+        this.nuggetHeight = nuggetHeight
+        const img = new Image()
+        img.src = "image/gold0132px.png"
+
+    }
+}
+
 //GoldMiner class
 class GoldMiner{
     //miner object is initialized in this class
@@ -46,6 +60,8 @@ class GoldMiner{
         this.canvasWidth = canvasWidth
         this.canvasHeight = canvasHeight
         this.miner = new Miner(0, 0, canvasWidth / 10, canvasHeight / 10)
+        this.nuggets = []
+        this.distributeNuggets()
     }
 
     //drawing miner avatar in the canvas
@@ -59,13 +75,83 @@ class GoldMiner{
     selectAvater(chosenAvatar){
         if(chosenAvatar === "mario"){
             const choice = new Image()
-            choice.src = "/images/image77.png"
-            // const choice = document.getElementById('minery')
-            // this.miner.chosenAvatar = choice
+            choice.src = "image/image_mario.png"
         }
+    }
+    //draws and distributes nuggets in the canvas
+    distributeNuggets(){
+        this.nuggets = []
+        //number of nuggets to be distributed in the canvas
+        let nOfNuggets = Math.floor(Math.random()) * 2 + 7
+        let nuggetX 
+        let nuggetY
+        let nuggetWidth = 10
+        let nuggetHeight = 10
+        let factorX = this.canvasWidth - nuggetWidth
+        let factorY = this.canvasHeight - nuggetHeight
+        
+        //producing nuggets
+        let index = 0
+        while(index <= nOfNuggets){
+            nuggetX = Math.floor(Math.random() * factorX)
+            nuggetY = Math.floor(Math.random() * factorY)
+            //pushing objects of nuggets in to nuggets array
+            this.nuggets.push({index : new Nugget(nuggetX, nuggetY, nuggetWidth, nuggetHeight)})
+            index++
+        }
+
+    }
+
+    drawNuggets(context){
+        let nuggetX
+        let nuggetY
+        let nuggetWidth
+        let nuggetHeight
+
+        index = 0
+        while(index < this.nuggets.length){
+            nuggetX = this.nuggets[index].index.nuggetX
+            nuggetY = this.nuggets[index].index.nuggetY
+            nuggetWidth = this.nugget[index].index.nuggetWidth
+            nuggetHeight = this.nugget[index].index.nuggetHeight
+            context.drawImage(imageMaker(canvasWidth, canvasHeight), nuggetX, nuggetY, nuggetWidth, nuggetHeight)
+            index++
+        }
+
+    }
+    //adds or substructs a pre determined distance value 
+    //on to the x and y postions of the avatar then compares it
+    //with the nugget x & y position to check if there is a position overlap
+    goldSensor(context, nextX, nextY){
+        let rightMinerPos = nextX + this.miner.minerWidth - 12
+        let leftMinerPos = nextX + 12
+        let topMinerPos = nextY + 17
+        let bottomMinerPos = nextY + this.miner.height -25
+        //iterate each object, get the nuggetX and Nugget Y positions 
+        //compare it with the calculated values
+        this.nuggets.forEach((nugget, index) => {
+            if(rightMinerPos >= nugget.index.nuggetX && leftMinerPos <= nugget.index.nuggetX + nugget.index.nuggetWidth
+                && bottomMinerPos >= nugget.index.nuggetY && topMinerPos <= nugget.index.nuggetY + nugget.index.nuggetHeight){
+                    gotGold = true
+                    console.log("gotgold set to true")
+                }
+        })
+        return gotGold
     }
 }
 
+//decides which image to be drawn into the canvas at runtime
+//based on the canvasWidth and canvasHeight parameters
+function imageMaker(canvasWidth, canvasHeight){
+    const img = new Image()
+    if(canvasWidth <= 400 && canvasHeight <= 400){
+        img.src = "image/gold0232px.png"
+    }
+    else{
+        img.src = "image/gold1.png"
+    }
+    return img
+}
 //sets the canvas width and height
 const initilizeCanvas = () =>{
     console.log("initialize")
