@@ -10,6 +10,8 @@ let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
 let gotGold = false;
+let score = 0
+let maxScore = 0
 
 //CLASSES
 
@@ -181,6 +183,15 @@ document.addEventListener("mousemove", mouseMoveHandler);
 
  // keyboard down handler
  function keyDownHandler(e) {
+    let gotGold = goldMiner.goldTouch(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
+    //gameOver()
+    if(gotGold){
+       console.log("cond fulfilled")
+       //context.clearRect(0, 0, canvas.width, canvas.height)
+       scoreMaker()
+       maxScore(score)
+       goldMiner.gotGold = false
+    }
      if(e.keyCode == 39) {
          rightPressed = true;
      }
@@ -220,6 +231,24 @@ document.addEventListener("mousemove", mouseMoveHandler);
         // goldMiner.miner.minerY = (e.pageY - canvas.offsetTop - goldMiner.miner.minerHeight) / 2;
     }
     console.log("e pagex : " +e.pageX)
+ }
+
+ //score maker updates the score dom element
+ function scoreMaker(){
+    score += 15
+    scoreText.innerHTML = score
+    setTimeout(() =>{
+       initilizeCanvas()
+    }, 500)
+    clearTimeout()
+ }
+
+ //records the maximum score
+ function maxScore(score){
+    if(score >= maxScore) {
+        maxScore = score
+        maxScoreText.innerHTML = maxScore
+    }
  }
 
 //when key is pressed it controls
