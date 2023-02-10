@@ -1,0 +1,41 @@
+
+{
+    "references": [
+                {
+                    "author": "Mozilla",
+                    "title": "API for Drawing in Canvas",
+                    "web-address": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_text",
+                    "date-accessed": "02/7/2023"
+                },
+                {
+                    "author": "Clear Interval",
+                    "title": "Mozilla",
+                    "web-address": "https://developer.mozilla.org/en-US/docs/Web/API/clearInterval",
+                    "date-accessed": "02/8/2023"
+                },
+                {
+                    "author": "Mozilla",
+                    "title": "Mouse and Keyboard Control API",
+                    "web-address": "https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard",
+                    "date-accessed": "02/8/2023"
+                },
+                {
+                    "author": "Mikael",
+                    "title": "Writing a slider in javascript",
+                    "web-address": "https://javascript.plainenglish.io/writing-a-slider-in-javascript-learning-web-development-in-practice-ea4862dce85a",
+                    "date-accessed": "02/7/2023"
+                },
+                {
+                    "author": "GA",
+                    "title": "Introduction to API by Jeremy Taubman and his team",
+                    "web-address": "https://github.com/seir-123/u1_api-intro",
+                    "date-accessed": "02/8/2023"
+                },
+                {
+                    "author": "Mozilla",
+                    "title": "Create Element",
+                    "web-address": "https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement",
+                    "date-accessed": "02/6/2023"
+                }
+            ]
+}

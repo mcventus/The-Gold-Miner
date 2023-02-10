@@ -102,11 +102,11 @@ class GoldMiner{
     distributeNuggets(){
         this.nuggets = []
         //number of nuggets to be distributed in the canvas
-        let nOfNuggets = Math.floor(Math.random()) + 7
+        let nOfNuggets = Math.floor(Math.random()) + 3
         let nuggetX
         let nuggetY
-        let nuggetWidth = 15
-        let nuggetHeight = 15
+        let nuggetWidth = 10
+        let nuggetHeight = 10
         let factorX = this.canvasWidth - nuggetWidth
         let factorY = this.canvasHeight - nuggetHeight
         //producing nuggets
@@ -142,20 +142,20 @@ class GoldMiner{
     //on to the x and y postions of the avatar then compares it
     //with the nugget x & y position to check if there is a position overlap
     goldSensor(context, nextX, nextY){
-        let rightMinerPos = nextX + this.miner.minerWidth - 12
+        let rightMinerPos = nextX + this.miner.minerWidth - 11
         let leftMinerPos = nextX + 12
-        let topMinerPos = nextY + 17
-        let bottomMinerPos = nextY + this.miner.height -25
+        let topMinerPos = nextY + 23
+        let bottomMinerPos = nextY + this.miner.height -27
         //iterate each object, get the nuggetX and Nugget Y positions 
         //compare it with the calculated values
         this.nuggets.forEach((nugget, index) => {
             if(rightMinerPos >= nugget.index.nuggetX && leftMinerPos <= nugget.index.nuggetX + nugget.index.nuggetWidth
                 && bottomMinerPos >= nugget.index.nuggetY && topMinerPos <= nugget.index.nuggetY + nugget.index.nuggetHeight){
-                    gotGold = true
-                    console.log("gotgold set to true")
+                    console.log("GOT GOLD IS SET TO TRUE: " +this.gotGold)
+                    this.gotGold = true
                 }
         })
-        return gotGold
+        return this.gotGold
     }
 }
 
@@ -194,17 +194,13 @@ playbtn.addEventListener('click', () => {
   timerId = setInterval(decrementTimer, 1000);
   decrementTimer();
   playbtn.style.display = "none";
-  console.log("WAS CLICKED !!!!")
 })
 
 function decrementTimer(){
-    console.log("decremet timer!!!!")
-    console.log("timeRemaining: "+timeRemaining)
     if(timeRemaining > 0){
         --timeRemaining
         clockTicking.innerHTML = timeRemaining;
         let temp = clockTicking.innerHTML
-        console.log(" clockTicking.innerHTML:   "+temp)
         scoreMaker()
     }else{
         playOn = false
@@ -241,9 +237,11 @@ function gameOver(){
 }
  
  //score maker updates the score dom element
+ let i = 0;
  function scoreMaker(){
-    if(score < winScore && timeRemaining != 0 && playOn){
-        console.log(" I was Called for 2nd time")
+    if(score < winScore && timeRemaining != 0 && playOn && gotGold){
+        i = i + 1
+        console.log(i)
         score += 15
         scoreText.innerHTML = score
     }else if(score >= winScore && timeRemaining != 0 && playOn){
@@ -261,7 +259,7 @@ function gameOver(){
     if(playOn){
       setTimeout(() =>{
         initilizeCanvas()
-      }, 5000)
+      }, 500)
       clearTimeout()
     }
  }
@@ -274,7 +272,7 @@ function gameOver(){
         if(score != 0){
             currentScore.innerHTML = score
         }
-        console.log("currentScore: " +currentScore.innerHTML);
+        console.log("CurrentScore: " +currentScore.innerHTML);
         maxScore = score
         maxScoreText.innerHTML = maxScore
         console.log("MAX SCORE IS : " +maxScore)
@@ -283,7 +281,7 @@ function gameOver(){
         if(score != 0){
             currentScore.innerHTML = score
         }
-        console.log("currentScore: " +currentScore.innerHTML);
+        console.log("CurrentScore: " +currentScore.innerHTML);
         maxScore = currentMax
         maxScoreText.innerHTML = maxScore
        
@@ -305,7 +303,6 @@ document.addEventListener("keyup", keyUpHandler, false);
     let gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
    
     if(gotGold && playOn){
-       console.log("Condition fulfilled!")
        scoreMaker()
        goldMiner.gotGold = false
     }
