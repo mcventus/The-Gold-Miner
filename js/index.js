@@ -261,7 +261,7 @@ function gameOver(){
     if(playOn){
       setTimeout(() =>{
         initilizeCanvas()
-      }, 1000)
+      }, 5000)
       clearTimeout()
     }
  }
