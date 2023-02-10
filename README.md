@@ -92,9 +92,9 @@ Smooth implementation of functionalities and calling them at runtime
 
 ```
 ## Surge Deployment Link
-Home Page: https://gold-miner.surge.sh/home.html
-Avatar Page: https://gold-miner.surge.sh/avatar.html
-Mining (Gaming) Page: https://gold-miner.surge.sh/index.html
+-Home Page: https://gold-miner.surge.sh/home.html
+-Avatar Page: https://gold-miner.surge.sh/avatar.html
+-Mining (Gaming) Page: https://gold-miner.surge.sh/index.html
 
 ## Change Log
 - MVP and all STRETCHED GOALS and BEYOND that more additional features added. 
