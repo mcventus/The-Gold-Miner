@@ -40,6 +40,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 - the game also must show max score after finishing playing
 
 ## Additional Requirements
+
 - also player can use mouse to move the avatar in all directions
 - background music must play to make the game interesting
 
@@ -91,10 +92,12 @@ Smooth implementation of functionalities and calling them at runtime
  }
 
 ```
+
 ## Surge Deployment Link
--Home Page: https://gold-miner.surge.sh/home.html
--Avatar Page: https://gold-miner.surge.sh/avatar.html
--Mining (Gaming) Page: https://gold-miner.surge.sh/index.html
+
+- Home Page: https://gold-miner.surge.sh/home.html
+- Avatar Page: https://gold-miner.surge.sh/avatar.html
+- Mining (Gaming) Page: https://gold-miner.surge.sh/index.html
 
 ## Change Log
 - MVP and all STRETCHED GOALS and BEYOND that more additional features added. 
