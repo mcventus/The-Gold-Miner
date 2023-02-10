@@ -107,3 +107,4 @@ Smooth implementation of functionalities and calling them at runtime
 
 ## Report Format Example
 - Taken from the Teacher's repository. 
+- All REFERENCES and RESOURCES used can found in "references.json" file.

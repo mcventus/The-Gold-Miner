@@ -1,6 +1,12 @@
 
 {
     "references": [
+                { 
+                    "author": "Pexels",
+                    "title": "API for all image types and GOLD",
+                    "web-address": "https://api.pexels.com/v1/search?query=gold",
+                    "date-accessed": "02/6/2023"
+                },
                 {
                     "author": "Mozilla",
                     "title": "API for Drawing in Canvas",
