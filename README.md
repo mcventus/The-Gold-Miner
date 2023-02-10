@@ -91,10 +91,16 @@ Smooth implementation of functionalities and calling them at runtime
  }
 
 ```
+## Surge Deployment Link
+Home Page: https://gold-miner.surge.sh/home.html
+Avatar Page: https://gold-miner.surge.sh/avatar.html
+Mining (Gaming) Page: https://gold-miner.surge.sh/index.html
 
 ## Change Log
+- MVP and all STRETCHED GOALS and BEYOND that more additional features added. 
 
-- No changes made yet, I will update this section later on 
+## NOTICE 
+- I have used external Libraries, APIS, and other resources to accomplish this.
 
 ## Report Format Example
 - Taken from the Teacher's repository. 
