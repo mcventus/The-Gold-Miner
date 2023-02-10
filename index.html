@@ -11,15 +11,58 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1 class="title"pwd>The Gold Miner</h1>
-            <h2>Around The World <em>v</em>1</h2>
-            <!--div calss="wrapper"></div-->
-                <canvas id="miningZone"></canvas>
-            
+    <div class = "main-container">
+        <h1 class="title">The Gold Miner</h1>
+        <h2 class="sub-header">Around The World <em>v</em>1</h2>
+        <div class="scores-holder">
+            <div class="miner-score-1">
+                <h3 id="score-text">Score</h3>
+                <span class="gold-score">0</span>
+            </div>
+            <span class="divider">.</span>
+            <div class="miner-score-1">
+                <h3 id="current-text">Game</h3>
+                <span id="gold-score-current">0</span>
+            </div>
+            <span class="divider">.</span>
+            <div class="miner-score-1">
+                <h3 id="max-text">Max</h3>
+                <span id="gold-score-max">0</span>
+            </div>
         </div>
+        <div class="avatar-playing">
+            <h3 id="avatar-text"></h3>
+            <span id="time">PRESS PLAY</span>
+        </div>    
+        <div class="canvas-holder">
+            <canvas id="miningZone" width="400" height="400"></canvas>
+        </div>
+        <div class="playquit">
+            <button type="button" id="playindex" role="button">Play</button>
+            <a href="home.html" role="button"><button class="quit-button" role="button">Quit</button></a>
+        </div>
+        <span id="choice"></span>
     </div>
+    <footer id="footer">&copy;2023 Mcventus</footer>
+    <audio id="audio" autoplay loop controls src="music/christmas.mp3"></audio>
+    <script>
+        const choice = localStorage.getItem("choice");
+        document.getElementById("choice").innerHTML = choice;
+        let currentMax = document.getElementById("gold-score-max").innerHTML;
+        let maxScore
+        switch(choice){
+            case 'mario':
+                 maxScore = localStorage.getItem("mario-score");
+                 break;
+            case 'anonymous':
+                 maxScore = localStorage.getItem("anonymous-score");
+        }
+        if(currentMax < maxScore){
+            document.getElementById("gold-score-max").innerHTML = maxScore;
+        }
+        document.getElementById("avatar-text").innerHTML = choice.toLocaleUpperCase();
+        console.log(maxScore)
+    </script>
     <script type="module" src="js/index.js"></script>
 </body>
 </html>

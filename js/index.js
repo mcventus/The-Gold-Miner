@@ -1,17 +1,30 @@
 // GLOBAL VARIABLES
 let canvas = document.getElementById("miningZone");
 let context = canvas.getContext("2d");
+let scoreText = document.querySelector(".gold-score");
+let maxScoreText = document.getElementById("gold-score-max");
+let currentScore = document.getElementById("gold-score-current");
+let clockTicking = document.querySelector('#time');
+
 let canvasWidth = 0
 let canvasHeight = 0
 let goldMiner = null
+let gotGold = false
 let speed = 2
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
-let gotGold = false;
 let score = 0
 let maxScore = 0
+let playOn = false 
+let winScore = 270
+let playbtn = document.querySelector("#playindex");
+//timer functions
+let timerId = null;
+//time to play the game is 1 min
+let timeRemaining = 15;
+let gameStatus = document.querySelector(".winner");
 
 //CLASSES
 
@@ -26,9 +39,20 @@ class Miner{
         this.minerHeight = minerHeight
 
         //creates instance of an image to draw in the canvas
+        const choice = document.getElementById("choice").innerHTML
+        console.log("IT IS WORKING: " +choice)
         const img = new Image()
-        img.src = "image/image_mario.png"
-        this.chosenAvatar = img
+        if(choice === "mario"){
+            img.src = "image/mario_miner.png"
+            this.chosenAvatar = img
+        }else if(choice === "anonymous"){
+            img.src = "image/anonymous_miner.png"
+            this.chosenAvatar = img
+        }else{
+            img.src = "image/mario_miner.png"
+            this.chosenAvatar = img
+        }
+            
     }
     // validates the move of the avatar 
     validateMove(nextX, nextY, canvasWidth, canvasHeight){
@@ -50,7 +74,7 @@ class Nugget{
         this.nuggetWidth = nuggetWidth
         this.nuggetHeight = nuggetHeight
         const img = new Image()
-        img.src = "image/gold0132px.png"
+        img.src = "image/nugget_light_32x32.png"
 
     }
 }
@@ -73,32 +97,25 @@ class GoldMiner{
             this.miner.minerY, this.miner.minerWidth, this.miner.minerHeight)
     }
 
-    //a function to chose avatar type
-    selectAvater(chosenAvatar){
-        if(chosenAvatar === "mario"){
-            const choice = new Image()
-            choice.src = "image/image_mario.png"
-        }
-    }
+    
     //draws and distributes nuggets in the canvas
     distributeNuggets(){
         this.nuggets = []
         //number of nuggets to be distributed in the canvas
-        let nOfNuggets = Math.floor(Math.random()) * 2 + 7
-        let nuggetX 
+        let nOfNuggets = Math.floor(Math.random()) + 7
+        let nuggetX
         let nuggetY
-        let nuggetWidth = 10
-        let nuggetHeight = 10
+        let nuggetWidth = 15
+        let nuggetHeight = 15
         let factorX = this.canvasWidth - nuggetWidth
         let factorY = this.canvasHeight - nuggetHeight
-        
         //producing nuggets
         let index = 0
         while(index <= nOfNuggets){
             nuggetX = Math.floor(Math.random() * factorX)
             nuggetY = Math.floor(Math.random() * factorY)
             //pushing objects of nuggets in to nuggets array
-            this.nuggets.push({index : new Nugget(nuggetX, nuggetY, nuggetWidth, nuggetHeight)})
+            this.nuggets.push({index : new Nugget(nuggetX, nuggetY, nuggetWidth, nuggetHeight)} )
             index++
         }
 
@@ -109,13 +126,13 @@ class GoldMiner{
         let nuggetY
         let nuggetWidth
         let nuggetHeight
-
-        index = 0
+        
+        let index = 0
         while(index < this.nuggets.length){
             nuggetX = this.nuggets[index].index.nuggetX
             nuggetY = this.nuggets[index].index.nuggetY
-            nuggetWidth = this.nugget[index].index.nuggetWidth
-            nuggetHeight = this.nugget[index].index.nuggetHeight
+            nuggetWidth = this.nuggets[index].index.nuggetWidth
+            nuggetHeight = this.nuggets[index].index.nuggetHeight
             context.drawImage(imageMaker(canvasWidth, canvasHeight), nuggetX, nuggetY, nuggetWidth, nuggetHeight)
             index++
         }
@@ -147,10 +164,10 @@ class GoldMiner{
 function imageMaker(canvasWidth, canvasHeight){
     const img = new Image()
     if(canvasWidth <= 400 && canvasHeight <= 400){
-        img.src = "image/gold0232px.png"
+        img.src = "image/nugget_light_32x32.png"
     }
     else{
-        img.src = "image/gold1.png"
+        img.src = "image/nugget_400x400.png"
     }
     return img
 }
@@ -171,6 +188,109 @@ const initilizeCanvas = () =>{
 
 initilizeCanvas()
 
+playbtn.addEventListener('click', () => {
+    //setInterval will return a timer id
+  playOn = true
+  timerId = setInterval(decrementTimer, 1000);
+  decrementTimer();
+  playbtn.style.display = "none";
+  console.log("WAS CLICKED !!!!")
+})
+
+function decrementTimer(){
+    console.log("decremet timer!!!!")
+    console.log("timeRemaining: "+timeRemaining)
+    if(timeRemaining > 0){
+        --timeRemaining
+        clockTicking.innerHTML = timeRemaining;
+        let temp = clockTicking.innerHTML
+        console.log(" clockTicking.innerHTML:   "+temp)
+        scoreMaker()
+    }else{
+        playOn = false
+    }
+}
+
+function gameOver(){
+    clearInterval(timerId)
+    if(score >= winScore){
+      clockTicking.innerHTML = "YOU WON"
+    }else{
+        clockTicking.innerHTML = "TRY AGAIN"
+    }
+    scoreText.innerHTML = 0;
+    score = 0
+    timeRemaining = 15;
+   
+    playOn = false;
+}
+
+ function maximumScoreSetter(score){
+    if(score > winScore){
+        score = winScore
+    }
+    let maximum = maxScoreMaker(score)
+    let name = localStorage.getItem("choice")
+    switch(name){
+        case 'mario':
+            localStorage.setItem("mario-score", maximum)
+            break
+        case 'anonymous':
+            localStorage.setItem("anonymous-score", maximum)
+    }
+}
+ 
+ //score maker updates the score dom element
+ function scoreMaker(){
+    if(score < winScore && timeRemaining != 0 && playOn){
+        console.log(" I was Called for 2nd time")
+        score += 15
+        scoreText.innerHTML = score
+    }else if(score >= winScore && timeRemaining != 0 && playOn){
+        gameOver()
+        playbtn.style.display = "inline-block";
+        playbtn.innerHTML = "Play Again"
+    }else if(score < winScore && timeRemaining === 0){
+        gameOver()
+        playbtn.style.display = "inline-block";
+        playbtn.innerHTML = "Play Again"
+    }else{
+        clockTicking.innerHTML = timeRemaining;
+    }
+    maximumScoreSetter(score)
+    if(playOn){
+      setTimeout(() =>{
+        initilizeCanvas()
+      }, 1000)
+      clearTimeout()
+    }
+ }
+
+ //records the maximum score
+ function maxScoreMaker(score){
+    let currentMax = document.getElementById("gold-score-max").innerHTML;
+   
+    if(score >= currentMax) {
+        if(score != 0){
+            currentScore.innerHTML = score
+        }
+        console.log("currentScore: " +currentScore.innerHTML);
+        maxScore = score
+        maxScoreText.innerHTML = maxScore
+        console.log("MAX SCORE IS : " +maxScore)
+    }
+    if(score < currentMax){
+        if(score != 0){
+            currentScore.innerHTML = score
+        }
+        console.log("currentScore: " +currentScore.innerHTML);
+        maxScore = currentMax
+        maxScoreText.innerHTML = maxScore
+       
+    }
+    return maxScore
+ }
+
 //this event lives on the window and waits
 //for an event to resize the canvas and calls seupcanvas() 
 //function
@@ -182,13 +302,11 @@ document.addEventListener("keyup", keyUpHandler, false);
 
  // keyboard down handler
  function keyDownHandler(e) {
-    let gotGold = goldMiner.goldTouch(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
-    //gameOver()
-    if(gotGold){
-       console.log("cond fulfilled")
-       //context.clearRect(0, 0, canvas.width, canvas.height)
+    let gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
+   
+    if(gotGold && playOn){
+       console.log("Condition fulfilled!")
        scoreMaker()
-       maxScore(score)
        goldMiner.gotGold = false
     }
      if(e.keyCode == 39) {
@@ -220,57 +338,47 @@ document.addEventListener("keyup", keyUpHandler, false);
          upPressed = false;
      }
  }
- 
- //score maker updates the score dom element
- function scoreMaker(){
-    score += 15
-    scoreText.innerHTML = score
-    setTimeout(() =>{
-       initilizeCanvas()
-    }, 500)
-    clearTimeout()
- }
 
- //records the maximum score
- function maxScore(score){
-    if(score >= maxScore) {
-        maxScore = score
-        maxScoreText.innerHTML = maxScore
-    }
- }
+
 
 //when key is pressed it controls
 //the direction and the speed of the avator 
  function keyBoardMoves(){
      // keyboard moves
-     if(rightPressed) {
-        goldMiner.miner.validateMove(goldMiner.miner.minerX + speed, goldMiner.miner.minerY, canvasWidth, canvasHeight)
-    }
-    else if(leftPressed) {
-        goldMiner.miner.validateMove(goldMiner.miner.minerX - speed, goldMiner.miner.minerY, canvasWidth, canvasHeight)
-    }
-    if(downPressed) {
-        goldMiner.miner.validateMove(goldMiner.miner.minerX, goldMiner.miner.minerY + speed, canvasWidth, canvasHeight)
-    }
-    else if(upPressed) {
-        goldMiner.miner.validateMove(goldMiner.miner.minerX, goldMiner.miner.minerY - speed, canvasWidth, canvasHeight)
-    }
+     if(playOn){
+        if(rightPressed) {
+            goldMiner.miner.validateMove(goldMiner.miner.minerX + speed, goldMiner.miner.minerY, canvasWidth, canvasHeight)
+        }
+        else if(leftPressed) {
+            goldMiner.miner.validateMove(goldMiner.miner.minerX - speed, goldMiner.miner.minerY, canvasWidth, canvasHeight)
+        }
+        if(downPressed) {
+            goldMiner.miner.validateMove(goldMiner.miner.minerX, goldMiner.miner.minerY + speed, canvasWidth, canvasHeight)
+        }
+        else if(upPressed) {
+            goldMiner.miner.validateMove(goldMiner.miner.minerX, goldMiner.miner.minerY - speed, canvasWidth, canvasHeight)
+        }
+     }
  }
 
  function clean(){
-    //0 0 will clean everything 
-    // then canvas.width and canvas.height 
-    // will draw in the miningZone
+    //clean canvas function
     context.fillRect(0, 0, canvas.width, canvas.height)
     //context.clearRect(0, 0, canvas.width, canvas.height)
+ }
+
+ // background music player
+ function soundTrack(){
+    let yeshuaMas = document.querySelector('#audio')
+    yeshuaMas.play()
  }
 
  // draw function
  function miningLoop() {
      clean()
-     
      goldMiner.drawMiner(context)
-     
+     goldMiner.drawNuggets(context)
+     soundTrack()
      //drawMiner(): depreciated 
      keyBoardMoves()
      //requestAnimationFrame calls the miningLoop func. when it has 

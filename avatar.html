@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gold Miner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Unbounded:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+    <div class = "container-avatar">
+        <h1 class="title">The Gold Miner</h1>
+        <h2 class="sub-header">Around The World <em>v</em>1</h2>
+        <div class="choice-holder">
+            <div class="avatar-1">
+                <h3 id="ma">Mario</h3>
+                <img src="image/avatar_mario_76x64.png" id="mario">
+            </div>
+            <div class="avatar-2">
+                <h3 id="anon">Anonymous</h3>
+                <img src="image/avatar_anonymous_76x64.png" id="anonymous">
+            </div>
+        </div>
+        <div class="choices">
+            <div class="chooseavatar">
+                <button type="button" id="ava" class="choose" role="button">Choose Avatar</button>
+            </div>
+            <div class="chooseplay">
+                <a href="index.html" role="button"><button type="button" id="ply" class="play" role="button">Go to play</button></a>
+            </div>
+        </div>
+        <div class="avatar-action">
+            <span id="chosenavatar"></span>
+        </div>
+    </div>
+    <footer id="footer">&copy;2023 Mcventus</footer>
+    <audio id="audio" autoplay loop controls src="music/christmas.mp3"></audio>
+    <script type="module" src="js/index.js"></script>
+    <script>
+        const chooseAvatar = document.querySelector('#ava');
+        const playButton = document.querySelector('.chooseplay');
+        const marioImgSelected =  document.getElementById("mario");
+        const anonymousImgSelected =  document.getElementById("anonymous");
+        marioImgSelected.addEventListener('click', () => {
+            selectAvatar('mario')
+        })
+        anonymousImgSelected.addEventListener('click', () => {
+            selectAvatar('anonymous')
+        })
+       
+        // //a function to chose avatar type 
+        const mario = document.querySelector('.avatar-1');
+        const anonymous = document.querySelector('.avatar-2');
+        function selectAvatar(chosenAvatar){
+            console.log("WAS CLICKED!")
+            if(chosenAvatar === "mario"){
+                localStorage.setItem("choice", "mario")
+                document.getElementById('chosenavatar').innerHTML = "mario";
+                atUsersChoice = "mario"
+                chooseAvatar.style.display = "none"
+                playButton.style.display = 'block';
+                anonymous.style.display = 'none';
+            }else if(chosenAvatar === "anonymous"){
+                localStorage.setItem("choice", "anonymous")
+                document.getElementById('chosenavatar').innerHTML = "anonymous";
+                atUsersChoice = "anonymous"
+                chooseAvatar.style.display = "none"
+                playButton.style.display = 'block';
+                mario.style.display = 'none';
+            }else{
+                chooseAvatar.style.display = "block"
+            }
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
+    <title>The Gold Miner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Unbounded:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/slider.css">
+</head>
+<body>
+    <div class="home-container">
+        <h1 class="title">The Gold Miner</h1>
+        <h2 class="sub-header">Around The World <em>v</em>1</h2>
+        <div class="mission-wrapper">
+            <div class="mission">
+                <h2>Mission</h2>
+                <p class="mission-msg">Using the arrow keys, move the avatar</p>
+                <p class="mission-msg">towards the gold mines and mine as much</p>
+                <p class="mission-msg">as gold you can to reach the winning score</p>
+                <p class="mission-msg">before the timer counts to zero.</p>
+            </div>
+            <div class="how-to-play">
+                <h2 class="controls"><strong>Controls</strong></h2>
+                <p class="inst">To Move Right Use Right Arrow</p>
+                <p class="inst">To Move Left Use Left Arrow</p>
+                <p class="inst">To Move Forward Use Up Arrow Key</p>
+                <p class="inst">To Move Backward Use Down Arrow </p>
+            </div>
+        </div>
+        <div id="slider">
+            <ul id="slideWrap"> 
+              <li><img id="img-1" src="" alt=""></li>
+              <li><img id="img-2" src="" alt=""></li>
+              <li><img id="img-3" src="" alt=""></li>
+              <li><img id="img-4" src="" alt=""></li>
+              <li><img id="img-5" src="" alt=""></li>
+              <li><img id="img-6" src="" alt=""></li>
+              <li><img id="img-7" src="" alt=""></li>
+            </ul>
+            <a id="prev" href="#">&#8810;</a>
+            <a id="next" href="#">&#8811;</a>
+          </div>
+        <a href="avatar.html" role="button"><button class="play-button" role="button">Go to game</button></a>
+    </div>
+    <footer id="footer">&copy;2023 Mcventus</footer>
+    <audio id="audio" autoplay loop controls src="music/christmas.mp3"></audio>
+    <script src="js/index.js"></script>
+    <script>
+        let images = []
+        let url = "https://api.pexels.com/v1/search?query=gold"
+        
+        async function getData () {
+            fetch(url)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log("success", response)
+                let img1= document.querySelector('#img-1')
+                let img2 = document.querySelector('#img-2')
+                let img3 = document.querySelector('#img-3')
+                let img4= document.querySelector('#img-4')
+                let img5 = document.querySelector('#img-5')
+                let img6 = document.querySelector('#img-6')
+                let img7 = document.querySelector('#img-7')
+        
+                for(let i = 0; i < 8; i++){
+                  const img = new Image();
+                  img.src = response.photos[i].src.small;
+                  // images.push(img.src)
+                  img1.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img2.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img3.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img4.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  img5.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1; 
+                  img6.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  img7.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  console.log(i)
+                  
+                }
+            })
+            .catch(err => {
+                console.log("error!", err)
+            })
+        }
+        
+        let imageSlider = function(images) {
+            getData()
+            let slider = document.getElementById("slider");
+            let sliderWidth = slider.offsetWidth;
+            let slideList = document.getElementById("slideWrap");
+            let count = 1;
+            let items = slideList.querySelectorAll("li").length;
+            let prev = document.getElementById("prev");
+            let next = document.getElementById("next");
+            
+            window.addEventListener('resize', function() {
+              sliderWidth = slider.offsetWidth;
+            });
+            
+            let prevSlide = function() {
+              if(count > 1) {
+                count = count - 2;
+                slideList.style.left = "-" + count * sliderWidth + "px";
+                count++;
+              }
+              else if(count = 1) {
+                count = items - 1;
+                slideList.style.left = "-" + count * sliderWidth + "px";
+                count++;
+              }
+            };
+            
+            let nextSlide = function() {
+              if(count < items) {
+                slideList.style.left = "-" + count * sliderWidth + "px";
+                count++;
+              }
+              else if(count = items) {
+                slideList.style.left = "0px";
+                count = 1;
+              }
+            };
+            
+            next.addEventListener("click", function() {
+              nextSlide();
+            });
+            
+            prev.addEventListener("click", function() {
+              prevSlide();
+            });
+            
+            setInterval(function() {
+              nextSlide()
+            }, 8000);
+            
+            };
+            
+            window.onload = function() {
+              imageSlider(images);  
+            }
+            </script>
+        
+          </script>
+</body>
+</html>
