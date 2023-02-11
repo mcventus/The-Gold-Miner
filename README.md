@@ -79,17 +79,24 @@ Smooth implementation of functionalities and calling them at runtime
 
 ```
 
- // draw function
- function miningLoop() {
-     clean()
-     //draws the player or the miner
-     drawMiner()
-     //moves the player or the miner
-     keyBoardMoves()
-     //requestAnimationFrame calls the miningLoop func. when it has 
-     //a new frame that can be drawn to
-     requestAnimationFrame(miningLoop);
- }
+ <script>
+        const choice = localStorage.getItem("choice");
+        document.getElementById("choice").innerHTML = choice;
+        let currentMax = document.getElementById("gold-score-max").innerHTML;
+        let maxScore
+        switch(choice){
+            case 'mario':
+                 maxScore = localStorage.getItem("mario-score");
+                 break;
+            case 'anonymous':
+                 maxScore = localStorage.getItem("anonymous-score");
+        }
+        if(currentMax < maxScore){
+            document.getElementById("gold-score-max").innerHTML = maxScore;
+        }
+        document.getElementById("avatar-text").innerHTML = choice.toLocaleUpperCase();
+        console.log(maxScore)
+</script>
 
 ```
 
