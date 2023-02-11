@@ -29,7 +29,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 - once the player read the mission and instruction then can click on "Go to game" button
 - when Go to game is pressed the next stage must show avatar options
 - once the player decided on the avatar choice then "Go to play" button must be activated 
-- the player must have chosen avatar
+- the player must have chosen avatar at this stage
 - The game must have play button 
 - the game must have quit button
 - when player press play button then play mode must be activated 

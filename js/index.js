@@ -117,7 +117,6 @@ class GoldMiner{
             this.nuggets.push({index : new Nugget(nuggetX, nuggetY, nuggetWidth, nuggetHeight)} )
             index++
         }
-
     }
 
     drawNuggets(context){
