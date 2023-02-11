@@ -75,7 +75,6 @@ class Nugget{
         this.nuggetHeight = nuggetHeight
         const img = new Image()
         img.src = "image/nugget_light_32x32.png"
-
     }
 }
 
@@ -208,11 +207,20 @@ function decrementTimer(){
     }
 }
 
+function winImage(){
+    console.log("WIN IMAGE")
+    const img = new Image()
+    img.src = "image/nugget_400x400.png"
+    clean()
+    context.drawImage(img, 0, 0, 200, 200)
+}
+
 function gameOver(){
     clearInterval(timerId)
     if(score >= winScore){
       clockTicking.innerHTML = "YOU WON"
     }else{
+        winImage()
         clockTicking.innerHTML = "TRY AGAIN"
     }
     scoreText.innerHTML = 0;
@@ -237,7 +245,7 @@ function gameOver(){
     }
 }
  
- //score maker updates the score dom element
+ //score maker updates the score element
  function scoreMaker(){
     if(score < winScore && timeRemaining != 0 && playOn && gotGold){
         score += 15
@@ -349,6 +357,7 @@ function senseGold(){
 //         e.preventDefault();
 //     }
 // }
+
 //when key is pressed it controls
 //the direction and the speed of the avator 
  function keyBoardMoves(){
@@ -386,7 +395,8 @@ function senseGold(){
      clean()
      goldMiner.drawMiner(context)
      goldMiner.drawNuggets(context)
-     //soundTrack()
+     soundTrack()
+     
      //drawMiner(): depreciated 
      keyBoardMoves()
      //requestAnimationFrame calls the miningLoop func. when it has 
