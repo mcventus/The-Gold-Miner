@@ -184,7 +184,6 @@ body {
    position: relative;
    justify-content: space-between;
 }
-
 .mission, .how-to-play{
     width: 50%;
     flex: 1;
@@ -194,11 +193,9 @@ body {
     background-color: #000000;
     box-shadow: rgb(38, 57, 77) 0px 0px 10px -10px, rgb(110, 122, 134) 0px 0px 10px 4px;
 }
-
 .mission-msg, .inst{
    font-size: 15px;
 }
-
 .avatar-1, .avatar-2{
    display: inline-block;
    margin-bottom: 20px;
@@ -228,7 +225,6 @@ body {
    padding: 1px;
    border-radius: 17px;
 }
-
 #footer{
    bottom: 0;
    color: rgb(78, 80, 80);
@@ -418,12 +414,13 @@ body {
       flex-direction: column;
       justify-content: space-evenly;
    }
-   .mission, .how-to-play{
-      margin-left: 20px;
-     }
    .home-container{
       margin: auto 0;
    }
+   .mission, .how-to-play{
+      margin-left: -8px;
+      width: 80%;
+     }
     .play-button{
        width: 100px;
        height: 100px;
