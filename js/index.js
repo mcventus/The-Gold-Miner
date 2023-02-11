@@ -295,6 +295,9 @@ window.addEventListener("resize", initilizeCanvas)
 // event handlers
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+// document.addEventListener("touchstart", touchHandler);
+// document.addEventListener("touchmove", touchHandler);
+
 function senseGold(){
     gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
     console.log("GOT GOLD " +gotGold)
@@ -336,8 +339,16 @@ function senseGold(){
      }
  }
 
-
-
+//mobile touchHandler
+//touch support coming in version2
+// function touchHandler(e){
+//     if(e.touches){
+//         goldMiner.miner.minerX = e.touches[0].pageX - canvas.offsetLeft - goldMiner.miner.minerWidth / 2;
+//         goldMiner.miner.minerY = e.touches[0].pageY - canvas.offsetTop - goldMiner.miner.minerHeight / 2;
+//         output.textContent = `Touch:  x: ${goldMiner.miner.minerX}, y: ${goldMiner.miner.minerY}`;
+//         e.preventDefault();
+//     }
+// }
 //when key is pressed it controls
 //the direction and the speed of the avator 
  function keyBoardMoves(){

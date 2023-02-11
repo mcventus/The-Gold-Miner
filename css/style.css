@@ -98,10 +98,13 @@ body {
     flex: 1;
     padding: 5px;
 }
-.main-container, .container-avatar{
+.main-container, .container-avatar, .home-container{
     text-align: center;
     margin: 0 auto;
     padding: 15px;
+}
+.home-container{
+   justify-content: space-between;
 }
 .container-avatar{
    display: flex;
@@ -176,41 +179,27 @@ body {
 .quit-button:hover, .play-button:hover{
    margin-top: 20px;
 }
-
-.home-container{
-   text-align: center;
-   margin: 0 auto;
-   padding: 15px;
+.mission-wrapper{
+   display: flex;
+   position: relative;
    justify-content: space-between;
 }
-.mission-wrapper{
-   position: relative;
-   justify-content: space-around;
-}
-.mission{
-   width: 50%;
-   flex: 1;
-}
-.mission:first-child{
-   margin-right: 100px;
-   
-}
-.how-to-play, .avatar-1{
-    display: inline-block;
+
+.mission, .how-to-play{
+    width: 50%;
+    flex: 1;
     padding: 5px 20px;
-    position: relative;
-    margin-left: auto;
-    width: max-content;
-    height: fit-content;
-    justify-content: space-around;
+    margin-top: 30px;
     border-radius: 17px;
     background-color: #000000;
     box-shadow: rgb(38, 57, 77) 0px 0px 10px -10px, rgb(110, 122, 134) 0px 0px 10px 4px;
 }
-.mission-msg{
+
+.mission-msg, .inst{
    font-size: 15px;
 }
-.mission, .avatar-1, .avatar-2{
+
+.avatar-1, .avatar-2{
    display: inline-block;
    margin-bottom: 20px;
    margin-top: 20px;
@@ -306,9 +295,6 @@ body {
    body{
        background-color: #4c067f;
    }
-   .home-container{
-      margin-left: 220px;
-   }
    #time{
       font-size: 2rem;
    }
@@ -325,12 +311,8 @@ body {
    body{
        background-color: #000000;
    }
-   .home-container{
-      margin-left: 180px;
-   }
     .mission:first-child{
        margin-right: 20px;
-       
     }
    #time{
       font-size: 2rem;
@@ -346,12 +328,8 @@ body {
    body{
       background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(84, 68, 189));
    }
-   .home-container{
-      margin-left: 140px;
-   }
     .mission:first-child{
        margin-right: 20px;
-       
     }
     .button, .play-button, .quit-button, .play, .choose{
        border: 1px solid rgb(170, 31, 12);
@@ -376,19 +354,22 @@ body {
    body{
        background-color: #00000b;
    }
-   .home-container{
-      margin: auto;
-   }
    .button, .play-button, .quit-button, .play, .choose{
        border: 1px solid rgb(1, 66, 0);
     }
-    .mission{
-      display: inline-block;
-    }
-    .mission:first-child{
-       margin-right: 5px;
-    }
-    .main-container{
+   .mission-wrapper{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+   .mission{
+      width: 50%;
+   }
+   .mission, .how-to-play{
+    margin-left: 60px;
+   }
+    .main-container, .home-container{
        display: flex;
        flex-direction: column;
        justify-content: space-evenly;
@@ -421,6 +402,9 @@ body {
    #audio{
       margin-bottom: 40px;
    }
+   #footer{
+      display: none;
+   }
  
 }
 
@@ -429,23 +413,17 @@ body {
     .button, .play-button, .quit-button, .play, .choose{
        border: 1px solid rgb(8, 22, 1);
     }
-    .home-container{
-      margin: auto;
+    .home-container, .main-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
    }
-    .mission-wrapper{
-       font-size: xx-small;
-    }
-    .mission{
-       width: auto;
-       height: auto;
-    }
-    .mission:first-child{
-       margin-right: 0px;
-    }
-   .how-to-play{
-       width: auto;
-       height: auto;
-    } 
+   .mission, .how-to-play{
+      margin-left: 20px;
+     }
+   .home-container{
+      margin: auto 0;
+   }
     .play-button{
        width: 100px;
        height: 100px;
@@ -453,11 +431,6 @@ body {
     .play-button:hover{
        width: 100px;
        height: 100px;
-    }
-    .main-container{
-       display: flex;
-       flex-direction: column;
-       justify-content: space-evenly;
     }
     .canvas-holder{
        width: auto;
@@ -561,7 +534,5 @@ body {
    .audio-controls{
       display: none;
    }
-   #slider, #slider-wrapper{
-     margin-top: 120px;
-   }
+  
 }
