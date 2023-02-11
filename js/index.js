@@ -18,7 +18,7 @@ let downPressed = false;
 let score = 0
 let maxScore = 0
 let playOn = false 
-let winScore = 270
+let winScore = 1000
 let playbtn = document.querySelector("#playindex");
 //timer functions
 let timerId = null;
@@ -142,20 +142,19 @@ class GoldMiner{
     //on to the x and y postions of the avatar then compares it
     //with the nugget x & y position to check if there is a position overlap
     goldSensor(context, nextX, nextY){
-        let rightMinerPos = nextX + this.miner.minerWidth - 11
-        let leftMinerPos = nextX + 12
-        let topMinerPos = nextY + 23
-        let bottomMinerPos = nextY + this.miner.height -27
+       
+        let goldMined = false
+        let rightMinerPos = nextX + this.miner.minerWidth 
+        let leftMinerPos = nextX 
+       
         //iterate each object, get the nuggetX and Nugget Y positions 
         //compare it with the calculated values
         this.nuggets.forEach((nugget, index) => {
-            if(rightMinerPos >= nugget.index.nuggetX && leftMinerPos <= nugget.index.nuggetX + nugget.index.nuggetWidth
-                && bottomMinerPos >= nugget.index.nuggetY && topMinerPos <= nugget.index.nuggetY + nugget.index.nuggetHeight){
-                    console.log("GOT GOLD IS SET TO TRUE: " +this.gotGold)
-                    this.gotGold = true
-                }
+            if(rightMinerPos >= nugget.index.nuggetX && leftMinerPos <= nugget.index.nuggetX + nugget.index.nuggetWidth){
+                goldMined = true
+            }
         })
-        return this.gotGold
+        return goldMined
     }
 }
 
@@ -171,6 +170,8 @@ function imageMaker(canvasWidth, canvasHeight){
     }
     return img
 }
+
+
 //sets the canvas width and height
 const initilizeCanvas = () =>{
     console.log("initialize")
@@ -237,11 +238,8 @@ function gameOver(){
 }
  
  //score maker updates the score dom element
- let i = 0;
  function scoreMaker(){
     if(score < winScore && timeRemaining != 0 && playOn && gotGold){
-        i = i + 1
-        console.log(i)
         score += 15
         scoreText.innerHTML = score
     }else if(score >= winScore && timeRemaining != 0 && playOn){
@@ -259,7 +257,7 @@ function gameOver(){
     if(playOn){
       setTimeout(() =>{
         initilizeCanvas()
-      }, 500)
+      }, 5000)
       clearTimeout()
     }
  }
@@ -297,15 +295,17 @@ window.addEventListener("resize", initilizeCanvas)
 // event handlers
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-
+function senseGold(){
+    gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
+    console.log("GOT GOLD " +gotGold)
+    if(gotGold && playOn){
+        scoreMaker()
+        gotGold = false
+    }
+}
  // keyboard down handler
  function keyDownHandler(e) {
-    let gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
-   
-    if(gotGold && playOn){
-       scoreMaker()
-       goldMiner.gotGold = false
-    }
+     senseGold()
      if(e.keyCode == 39) {
          rightPressed = true;
      }
@@ -375,7 +375,7 @@ document.addEventListener("keyup", keyUpHandler, false);
      clean()
      goldMiner.drawMiner(context)
      goldMiner.drawNuggets(context)
-     soundTrack()
+     //soundTrack()
      //drawMiner(): depreciated 
      keyBoardMoves()
      //requestAnimationFrame calls the miningLoop func. when it has 

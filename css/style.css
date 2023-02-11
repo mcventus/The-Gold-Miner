@@ -306,6 +306,9 @@ body {
    body{
        background-color: #4c067f;
    }
+   .home-container{
+      margin-left: 220px;
+   }
    #time{
       font-size: 2rem;
    }
@@ -315,7 +318,6 @@ body {
    #audio{
       margin-bottom: 40px;
    }
-
 }
 
 @media screen and (max-width: 2000px) {
@@ -323,6 +325,13 @@ body {
    body{
        background-color: #000000;
    }
+   .home-container{
+      margin-left: 180px;
+   }
+    .mission:first-child{
+       margin-right: 20px;
+       
+    }
    #time{
       font-size: 2rem;
    }
@@ -336,6 +345,9 @@ body {
 @media screen and (max-width: 800px) {
    body{
       background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(84, 68, 189));
+   }
+   .home-container{
+      margin-left: 140px;
    }
     .mission:first-child{
        margin-right: 20px;
@@ -363,6 +375,9 @@ body {
 
    body{
        background-color: #00000b;
+   }
+   .home-container{
+      margin: auto;
    }
    .button, .play-button, .quit-button, .play, .choose{
        border: 1px solid rgb(1, 66, 0);
@@ -407,7 +422,6 @@ body {
       margin-bottom: 40px;
    }
  
- 
 }
 
 @media screen and (max-width: 325px) {
@@ -415,6 +429,9 @@ body {
     .button, .play-button, .quit-button, .play, .choose{
        border: 1px solid rgb(8, 22, 1);
     }
+    .home-container{
+      margin: auto;
+   }
     .mission-wrapper{
        font-size: xx-small;
     }
