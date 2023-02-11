@@ -26,22 +26,20 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 
 ### MVP
 
+- once the player read the mission and instruction then can click on "Go to game" button
+- when Go to game is pressed the next stage must show avatar options
+- once the player decided on the avatar choice then "Go to play" button must be activated 
+- the player must have chosen avatar
 - The game must have play button 
 - the game must have quit button
 - when player press play button then play mode must be activated 
 - when player press quit button game window must close
-- when play is pressed the next stage must show the mission of the game for the player
-- the player must be able to choose player
-- once the player read the mission and decided on the avatar choice then play mode must be activated
 - the avatar must make right, left, top, and bottom movements using keyboard 
-- also player can use mouse to move the avatar in all directions
 - background music must play to make the game interesting
 - when player start playing, the game must count the score of the player which is based on the amount of gold collected
-- the game also must show max score after finishing playing
 
 ## Additional Requirements
 
-- also player can use mouse to move the avatar in all directions
 - background music must play to make the game interesting
 
 ## Wireframe: Priority Matrix

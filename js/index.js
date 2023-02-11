@@ -217,8 +217,9 @@ function winImage(){
 
 function gameOver(){
     clearInterval(timerId)
+   
     if(score >= winScore){
-      clockTicking.innerHTML = "YOU WON"
+        clockTicking.innerHTML = "YOU WON"
     }else{
         winImage()
         clockTicking.innerHTML = "TRY AGAIN"
