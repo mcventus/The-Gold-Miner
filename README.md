@@ -42,6 +42,10 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 
 - background music must play to make the game interesting
 
+## Beyond requirements 
+
+- when miner (player) finds gold or if the gold finds the miner (player) then must have special sound effect
+
 ## Wireframe: Priority Matrix
    
    https://wireframe.cc/QVWKgN
