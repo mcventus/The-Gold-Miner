@@ -42,6 +42,18 @@
                     "title": "Create Element",
                     "web-address": "https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement",
                     "date-accessed": "02/6/2023"
+                },
+                {
+                    "author": "Foolish Developer",
+                    "title": "Image Slider",
+                    "web-address": "https://foolishdeveloper.com/automatic-image-slider-in-html-css-and-javascript/",
+                    "date-accessed": "02/6/2023"
+                },
+                {
+                    "author": "Jones",
+                    "title": "Async & Await vs promises",
+                    "web-address": "https://www.jondjones.com/frontend/javascript/js-tips/asyncawait-vs-promises-who-wins-in-a-fist-fight/",
+                    "date-accessed": "02/7/2023"
                 }
             ]
 }

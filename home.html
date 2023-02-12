@@ -56,6 +56,18 @@
         let images = []
         let url = "https://api.pexels.com/v1/search?query=gold"
         
+        /* The following code block is taken from the Teacher's repository. Changing from async to 
+        awaits does not do much that is why i have left the code as it is. No significant difference 
+        in using await or async as they both wait for the promise to finish or  waits promise returns 
+        to be in a resolved state before a call to the function. Both are used to execute asynchronous 
+        code as if it is synchronous. */
+        
+        /* Only a few modifications to suit this program in the next functions namely, getData()
+         and imageSlider. Citations to the source code can be found in the reference.json list. 
+         I have seen so many people chaning names of functions, variables, loop types etc 
+         but I still can see it is the same code. Best to leave best practices as they are. 
+         It is foolishness otherwise */
+
         async function getData () {
             fetch(url)
             .then(response => {
@@ -98,6 +110,10 @@
             })
         }
         
+        /* The following code block is taken from "https://foolishdeveloper.com/automatic
+        -image-slider-in-html-css-and-javascript/" as library function. Simply the best 
+        practice to silde as many as images you like. */
+
         let imageSlider = function(images) {
             getData()
             let slider = document.getElementById("slider");
