@@ -45,6 +45,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 ## Beyond requirements 
 
 - when miner (player) finds gold or if the gold finds the miner (player) then must have special sound effect
+- the game's timer and message must blink at a 1s frequency  
 
 ## Wireframe: Priority Matrix
    
