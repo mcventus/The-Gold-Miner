@@ -195,7 +195,7 @@ playbtn.addEventListener('click', () => {
   playbtn.style.display = "none";
 })
 
-function decrementTimer(){
+const decrementTimer = () => {
     if(timeRemaining > 0){
         --timeRemaining
         clockTicking.innerHTML = timeRemaining;
@@ -206,7 +206,7 @@ function decrementTimer(){
     }
 }
 
-function winImage(){
+const winImage = () =>{
     console.log("WIN IMAGE")
     const img = new Image()
     img.src = "image/nugget_400x400.png"
@@ -214,7 +214,7 @@ function winImage(){
     context.drawImage(img, 0, 0, 200, 200)
 }
 
-function gameOver(){
+const gameOver = () => {
     clearInterval(timerId)
    
     if(score >= winScore){
@@ -230,7 +230,7 @@ function gameOver(){
     playOn = false;
 }
 
- function maximumScoreSetter(score){
+ const maximumScoreSetter = (score) => {
     if(score > winScore){
         score = winScore
     }
@@ -246,7 +246,7 @@ function gameOver(){
 }
  
  //score maker updates the score element
- function scoreMaker(){
+ const scoreMaker = () => {
     if(score < winScore && timeRemaining != 0 && playOn && gotGold){
         score += 15
         scoreText.innerHTML = score
@@ -271,7 +271,7 @@ function gameOver(){
  }
 
  //records the maximum score
- function maxScoreMaker(score){
+ const maxScoreMaker = (score) => {
     let currentMax = document.getElementById("gold-score-max").innerHTML;
    
     if(score >= currentMax) {
@@ -306,7 +306,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 // document.addEventListener("touchstart", touchHandler);
 // document.addEventListener("touchmove", touchHandler);
 
-function senseGold(){
+const senseGold = () => {
     gotGold = goldMiner.goldSensor(context, goldMiner.miner.minerX, goldMiner.miner.minerY)
     console.log("GOT GOLD " +gotGold)
     if(gotGold && playOn){
