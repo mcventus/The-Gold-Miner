@@ -18,7 +18,7 @@ let downPressed = false;
 let score = 0
 let maxScore = 0
 let playOn = false 
-let winScore = 2000
+let winScore = 4000
 let playbtn = document.querySelector("#playindex");
 //timer functions
 let timerId = null;
@@ -27,7 +27,19 @@ let timeRemaining = 15;
 let gameStatus = document.querySelector(".winner");
 //game over boolean
 let isGameOver = false
-
+let counter = 0;
+//colors
+const colors =[
+    "#1505fc", 
+    "#ffc403", 
+    "#0313ff", 
+    "#a703ff",
+    "#6305f0",
+    "#c9f007",
+    "#dcf500",
+    "#9107fa",
+    "#c9f007"
+]
 //CLASSES
 
 //Miner class
@@ -121,11 +133,11 @@ class GoldMiner{
     distributeNuggets(){
         this.nuggets = []
         //number of nuggets to be distributed in the canvas
-        let nOfNuggets = Math.floor(Math.random()) + 3
+        let nOfNuggets = Math.floor(Math.random()) + 8
         let nuggetX
         let nuggetY
-        let nuggetWidth = 10
-        let nuggetHeight = 10
+        let nuggetWidth = 11
+        let nuggetHeight = 11
         let factorX = this.canvasWidth - nuggetWidth
         let factorY = this.canvasHeight - nuggetHeight
         //producing nuggets
@@ -184,11 +196,26 @@ function imageMaker(canvasWidth, canvasHeight){
         img.src = "image/nugget_light_32x32.png"
     }
     else{
-        img.src = "image/nugget_400x400.png"
+        img.src = "image/nugget_dark_32x32.png"
     }
     return img
 }
 
+//color switcher
+const colorSwitcher = () => {
+    if(playOn){
+       
+        if(counter < colors.length){
+             document.querySelector(".canvas-holder").style.backgroundColor = colors[counter];
+             counter++;
+         }else if(counter === colors.length){
+             counter = 0
+             document.querySelector(".canvas-holder").style.backgroundColor = colors[counter];
+             counter++
+         }
+    }
+   
+}
 
 //sets the canvas width and height
 const initilizeCanvas = () =>{
@@ -206,6 +233,11 @@ const initilizeCanvas = () =>{
 }
 
 initilizeCanvas()
+
+setInterval(function() {
+    colorSwitcher()
+}, 1000)
+
 
 playbtn.addEventListener('click', () => {
     //setInterval will return a timer id
@@ -233,12 +265,14 @@ const gameOver = () => {
    
     if(score >= winScore){
         isGameOver = true;
-        document.querySelector(".canvas-holder").style.backgroundColor = "#ba4ff0";
+        //document.querySelector(".canvas-holder").style.backgroundColor = "#ba4ff0";
         clockTicking.innerHTML = "YOU WON"
+        isGameOver =false
     }else{
         isGameOver = true;
-        document.querySelector(".canvas-holder").style.backgroundColor = "#fc051e";
+        //document.querySelector(".canvas-holder").style.backgroundColor = "#c9f007";
         clockTicking.innerHTML = "TRY AGAIN"
+        isGameOver =false
     }
     scoreText.innerHTML = 0;
     score = 0
@@ -266,14 +300,20 @@ const gameOver = () => {
     if(score < winScore && timeRemaining != 0 && playOn && gotGold){
         score += 15
         scoreText.innerHTML = score
+        // setTimeout(() => {
+        //     colorSwitcher()
+        // }, 1000);
+        
     }else if(score >= winScore && timeRemaining != 0 && playOn){
         gameOver()
         playbtn.style.display = "inline-block";
         playbtn.innerHTML = "Play Again"
+        //document.querySelector(".canvas-holder").style.backgroundColor = "#ba4ff0";
     }else if(score < winScore && timeRemaining === 0){
         gameOver()
         playbtn.style.display = "inline-block";
         playbtn.innerHTML = "Play Again"
+        //document.querySelector(".canvas-holder").style.backgroundColor = "#c9f007";
     }else{
         clockTicking.innerHTML = timeRemaining;
     }

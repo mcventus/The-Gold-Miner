@@ -46,7 +46,7 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 
 - when miner (player) finds gold or if the gold finds the miner (player) then must have special sound effect
 - the game's timer and message must blink @ a 1s frequency  
-- @ "winning" and "try again" states the game should change the background color surrounding canvas
+- @ "playing or mining" state the game should change the background color surrounding canvas using a color switcher
 
 ## Wireframe: Priority Matrix
    
