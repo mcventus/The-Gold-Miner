@@ -35,6 +35,9 @@ body {
    font-style: normal;
    font-size: xx-large;
 }
+#mebreq{
+   display: none;
+   }
 #wrapper{
    display: flex;
    padding: 4rem;

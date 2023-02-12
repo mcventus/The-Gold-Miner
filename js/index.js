@@ -311,6 +311,7 @@ const senseGold = () => {
     console.log("GOT GOLD " +gotGold)
     if(gotGold && playOn){
         scoreMaker()
+        scoreSound()
         gotGold = false
     }
 }
@@ -389,14 +390,17 @@ const senseGold = () => {
     let yeshuaMas = document.querySelector('#audio')
     yeshuaMas.play()
  }
-
+ 
+ const scoreSound = () => {
+    let mebreq = document.querySelector('#mebreq')
+    mebreq.play()
+ }
  // draw function
  function miningLoop() {
      clean()
      goldMiner.drawMiner(context)
      goldMiner.drawNuggets(context)
      soundTrack()
-     
      //drawMiner(): depreciated 
      keyBoardMoves()
      //requestAnimationFrame calls the miningLoop func. when it has 
