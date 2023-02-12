@@ -18,13 +18,15 @@ let downPressed = false;
 let score = 0
 let maxScore = 0
 let playOn = false 
-let winScore = 1000
+let winScore = 2000
 let playbtn = document.querySelector("#playindex");
 //timer functions
 let timerId = null;
 //time to play the game is 1 min
 let timeRemaining = 15;
 let gameStatus = document.querySelector(".winner");
+//game over boolean
+let isGameOver = false
 
 //CLASSES
 
@@ -66,6 +68,19 @@ class Miner{
     }
 }
 
+//class mebreq
+class Mebreq{
+    constructor(mebreqX, mebreqY, mebreqWidth, mebreqHeight){
+        this.mebreqX = mebreqX
+        this.mebreqY = mebreqY
+        this.mebreqWidth = mebreqWidth
+        this.mebreqHeight = mebreqHeight
+        const img = new Image()
+        img.src = "image/mebreq.png"
+        this.mebreqImg = img
+    }
+}
+
 //Gold Nuggets Class
 class Nugget{
     constructor(nuggetX, nuggetY, nuggetWidth, nuggetHeight){
@@ -85,6 +100,7 @@ class GoldMiner{
         this.canvasWidth = canvasWidth
         this.canvasHeight = canvasHeight
         this.miner = new Miner(0, 0, canvasWidth / 10, canvasHeight / 10)
+        this.mebreq = new Mebreq(0, 0, canvasWidth /2, canvasHeight /2)
         this.nuggets = []
         this.distributeNuggets()
     }
@@ -96,7 +112,11 @@ class GoldMiner{
             this.miner.minerY, this.miner.minerWidth, this.miner.minerHeight)
     }
 
-    
+    //draw mebreq
+    drawMebreq(context){
+        context.drawImage(this.mebreq.mebreqImg, this.mebreq.mebreqX, 
+            this.mebreq.mebreqY, this.mebreq.mebreqWidth, this.mebreq.mebreqHeight)
+    }
     //draws and distributes nuggets in the canvas
     distributeNuggets(){
         this.nuggets = []
@@ -190,6 +210,7 @@ initilizeCanvas()
 playbtn.addEventListener('click', () => {
     //setInterval will return a timer id
   playOn = true
+  isGameOver = false
   timerId = setInterval(decrementTimer, 1000);
   decrementTimer();
   playbtn.style.display = "none";
@@ -206,27 +227,22 @@ const decrementTimer = () => {
     }
 }
 
-const winImage = () =>{
-    console.log("WIN IMAGE")
-    const img = new Image()
-    img.src = "image/nugget_400x400.png"
-    clean()
-    context.drawImage(img, 0, 0, 200, 200)
-}
-
 const gameOver = () => {
+   
     clearInterval(timerId)
    
     if(score >= winScore){
+        isGameOver = true;
+        document.querySelector(".canvas-holder").style.backgroundColor = "#ba4ff0";
         clockTicking.innerHTML = "YOU WON"
     }else{
-        winImage()
+        isGameOver = true;
+        document.querySelector(".canvas-holder").style.backgroundColor = "#fc051e";
         clockTicking.innerHTML = "TRY AGAIN"
     }
     scoreText.innerHTML = 0;
     score = 0
     timeRemaining = 15;
-   
     playOn = false;
 }
 
@@ -311,7 +327,7 @@ const senseGold = () => {
     console.log("GOT GOLD " +gotGold)
     if(gotGold && playOn){
         scoreMaker()
-        scoreSound()
+        mebreqSound()
         gotGold = false
     }
 }
@@ -391,7 +407,7 @@ const senseGold = () => {
     yeshuaMas.play()
  }
  
- const scoreSound = () => {
+ const mebreqSound = () => {
     let mebreq = document.querySelector('#mebreq')
     mebreq.play()
  }
@@ -401,6 +417,15 @@ const senseGold = () => {
      goldMiner.drawMiner(context)
      goldMiner.drawNuggets(context)
      soundTrack()
+    //  if(isGameOver){
+    //     document.querySelector(".canvas-holder").style.backgroundColor = "#ba4ff0";
+        
+    //     document.querySelector(".canvas-holder").style.backgroundImage = "url('image/someimage.png')"
+
+    //     could not get suitable image to draw lighting effect on to the canvas
+    //     goldMiner.drawMebreq(context)
+    //  }
+     
      //drawMiner(): depreciated 
      keyBoardMoves()
      //requestAnimationFrame calls the miningLoop func. when it has 
