@@ -119,3 +119,16 @@ Smooth implementation of functionalities and calling them at runtime
 ## Report Format Example
 - Taken from the Teacher's repository. 
 - All REFERENCES and RESOURCES used can found in "references.json" file.
+
+## Opinion and feedback
+- When I do projects as anyone else I do use external resources but still I also 
+  write my own codes as much as possible. I do appreciate best practices so whenever 
+  I find an excellent way to accomplish some task, I keep it as it is except minor
+  or major changes depending on situations. If I have to make major changes to suite 
+  my project so I do what is expected. In short as any Software Engineer depending on
+  the problem at hand I write many lines of my own code, create functionalities, 
+  threads, classes, variables etc.
+- The Github Languages section is not accurate. For-instance there are so many javascript 
+  lines of code embedded within the html files using <script> tag. Github does not 
+  process these sections of javascript found within the html files. So actually the 
+  javascript percentage reading 35.2% should be more than expected.
