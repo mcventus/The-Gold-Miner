@@ -18,12 +18,12 @@ let downPressed = false;
 let score = 0
 let maxScore = 0
 let playOn = false 
-let winScore = 4000
+let winScore = 10000
 let playbtn = document.querySelector("#playindex");
 //timer functions
 let timerId = null;
 //time to play the game is 1 min
-let timeRemaining = 15;
+let timeRemaining = 60;
 let gameStatus = document.querySelector(".winner");
 //game over boolean
 let isGameOver = false

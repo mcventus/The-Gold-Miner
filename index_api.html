@@ -1,6 +1,5 @@
-<!--API providers blocked me because it was automated: too much request! the source code is the 
-  one above named index_api.html. So this is mock image data -->
-
+<!--API providers blocked me because it was automated: too much request! this was the source code
+   So the mock version "index.html" is reading images from a folder -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,13 +37,13 @@
         </div>
         <div id="slider">
             <ul id="slideWrap"> 
-              <li><img id="img-1" src="image/mario_miner.png" alt="mario"></li>
-              <li><img id="img-2" src="image/gold_210x240.jpg" alt="mario"></li>
-              <li><img id="img-3" src="image/mario_miner.png" alt="mario"></li>
-              <li><img id="img-4" src="image/gold_jungle_210x240.jpg" alt="mario"></li>
-              <li><img id="img-5" src="image/mario_miner.png" alt="mario"></li>
-              <li><img id="img-6" src="image/gold_210x240.jpg" alt="mario"></li>
-              <li><img id="img-7" src="image/gold_jungle_210x240.jpg" alt="mario"></li>
+              <li><img id="img-1" src="" alt=""></li>
+              <li><img id="img-2" src="" alt=""></li>
+              <li><img id="img-3" src="" alt=""></li>
+              <li><img id="img-4" src="" alt=""></li>
+              <li><img id="img-5" src="" alt=""></li>
+              <li><img id="img-6" src="" alt=""></li>
+              <li><img id="img-7" src="" alt=""></li>
             </ul>
             <a id="prev" href="#">&#8810;</a>
             <a id="next" href="#">&#8811;</a>
@@ -57,7 +56,25 @@
     <script src="js/index.js"></script>
     <script>
         let images = []
-        function getData () {
+        let url = "https://api.pexels.com/v1/search?query=gold"
+        
+        /* The following code block is taken from the Teacher's repository. In this particular case, 
+        no significant difference in using await or async as they both wait for the promise to finish
+        or  waits promise returns to be in a resolved state before a call to the function. 
+        Both are used to execute asynchronous code as if it is synchronous. 
+        */
+        
+        /* Only a few modifications to suit this program in the next functions namely, getData()
+         and imageSlider. Citations to the source codes can be found in the reference.json list. 
+        */
+
+        async function getData () {
+            fetch(url)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log("success", response)
                 let img1= document.querySelector('#img-1')
                 let img2 = document.querySelector('#img-2')
                 let img3 = document.querySelector('#img-3')
@@ -65,6 +82,32 @@
                 let img5 = document.querySelector('#img-5')
                 let img6 = document.querySelector('#img-6')
                 let img7 = document.querySelector('#img-7')
+        
+                for(let i = 0; i < 8; i++){
+                  const img = new Image();
+                  img.src = response.photos[i].src.small;
+                  //images.push(img.src)
+                  img1.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img2.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img3.setAttribute("src",response.photos[i].src.small) 
+                  i = i;
+                  img4.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  img5.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1; 
+                  img6.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  img7.setAttribute("src",response.photos[i].src.small) 
+                  i = i+1;
+                  console.log(i)
+                  
+                }
+            })
+            .catch(err => {
+                console.log("error!", err)
+            })
         }
         
         /* The following code block is taken from "foolishdeveloper" as library function. 
