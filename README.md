@@ -60,8 +60,8 @@ A Gold Miner Game that enables the player to travel around the world and mine fo
 |Feb 2| Brainstorming / Writing Pseudocodes / Identifying All Constraints | Yes
 |Feb 3| Setting up framework and making good starting pages/ Testing if each components are functioning with out error | Yes
 |Feb 4| Implementing Javascript API for desktop mouse and keyboard controls | Yes
-|Feb 5| Mapping Cells in the canvas for gold search functionalities  | Not Yet
-|Feb 6| ... | ...
+|Feb 5| Mapping Cells in the canvas for gold search functionalities  | Yes
+
 
 
 ## Additional Libraries Plugins and APIs
@@ -112,6 +112,7 @@ Smooth implementation of functionalities and calling them at runtime
 
 ## Change Log
 - MVP and all STRETCHED GOALS and BEYOND that more additional features added. 
+- API provider blocked the image downloader so a fix was made.
 
 ## NOTICE 
 - I have used external Libraries, APIS, and other resources to accomplish this.
@@ -123,12 +124,12 @@ Smooth implementation of functionalities and calling them at runtime
 ## Opinion and feedback
 - When I do projects as anyone else I do use external resources but still I also 
   write my own codes as much as possible. I do appreciate best practices so whenever 
-  I find an excellent way to accomplish some task, I keep it as it is except minor
+  I find an excellent way to accomplish some task, I keep it as it is except for minor
   or major changes depending on situations. If I have to make major changes to suite 
   my project so I do what is expected. In short as any Software Engineer depending on
-  the problem at hand I write many lines of my own code, create functionalities, 
-  threads, classes, variables etc.
+  the problem at hand I write many lines of my own code, create functions, 
+  threads, classes, variables etc whenever appropriate.
 - The Github Languages section is not accurate. For-instance there are so many javascript 
   lines of code embedded within the html files using <script> tag. Github does not 
   process these sections of javascript found within the html files. So actually the 
-  javascript percentage reading 35.2% should be more than expected.
+  javascript percentage reading 35.2% should be more than that.
